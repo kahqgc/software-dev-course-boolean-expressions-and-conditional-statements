@@ -28,25 +28,51 @@ const readline = require('readline-sync');
 
 const hasTorch = true;
 const hasMap = false;
+const hasSword = true;
+const hasCompass = false;
+let playerhasCompass = hasCompass;
 
 console.log("You see two paths: one leads to the mountains, the other to the village.");
 const choice = readline.question("Do you go to the 'mountains' or the 'village'?");
 
 if (choice === "mountains" && hasTorch) {
   console.log("You safely navigate through the dark mountains.");
-} else if (choice === "mountains" && !hasTorch) {
+  console.log("Upon exiting the mountains, you see a troll");
+  const troll = readline.question("Do you 'fight' or 'run'?").toLowerCase();
+  if (troll === "fight" &&hasSword){
+    console.log("You slay the troll and earn 100 points!");
+    } else if (troll==="fight" && !hasSword) {
+    console.log("You have no weapon: GAME OVER");
+   }
+    else if (troll==="run") {
+    console.log("You've gotten away safely.. for now");
+    }
+}
+else if (choice === "mountains" && !hasTorch) {
   console.log("It's too dark to proceed. You decide to turn back.");
 } else if (choice === "village" || hasMap) {
   console.log("You find your way to the village.");
-} else {
+  secret = readline.question("Do you want to 'explore' or 'rest'?").toLowerCase();
+  if (secret === "rest"){
+    console.log("You fall asleep");
+  }
+  else if (secret === "explore") {
+    console.log("You meet a wizard, he offers you a Compass.");
+    wizard = readline.question("Do you accept?").toLowerCase();
+    if (wizard === "yes" && !playerhasCompasshasCompass){
+      playerhasCompass = true;
+      console.log("You have gained a compass and 100 points!");
+    }
+    else if (wizard === "no" && !playerhasCompass) {
+      console.log("Too bad, he SMITES you!");
+    }
+    else {
+      console.log("Still thinking...");
+    }
+  
+  }
+
+ else {
   console.log("You get lost and wander aimlessly.");
-}
-
-/* 
-
-Add Customization and expand the game:
-  - Add more choices and scenarios.
-  - Include additional items (e.g., a sword, a compass).
-  - Use nested conditionals and logical operators to create complex outcomes.
-
-*/
+ }
+} 
