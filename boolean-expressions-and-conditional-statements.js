@@ -59,7 +59,7 @@ else if (choice === "mountains" && !hasTorch) {
   else if (secret === "explore") {
     console.log("You meet a wizard, he offers you a Compass.");
     wizard = readline.question("Do you accept?").toLowerCase();
-    if (wizard === "yes" && !playerhasCompasshasCompass){
+    if (wizard === "yes" && !playerhasCompass){
       playerhasCompass = true;
       console.log("You have gained a compass and 100 points!");
     }
